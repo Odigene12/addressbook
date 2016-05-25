@@ -1,0 +1,31 @@
+<h1>All contacts</h1>
+<div class="row">
+    <div class="col-xs-6 col-xs-offset-3">
+      <div class="input-group">
+        <span class= "input-group-btn">
+          <button class="btn btn-default"><i class="fa fa-search" aria-hidden="true"></i>
+          </button>
+        </span>
+<input type="text" class="form-control" placeholder="Search for..." ng-model="searchText">
+
+      </div>
+    </div>
+  </div> 
+  <div class="container">
+<div ng-repeat= "contact in details | filter: searchText">
+	<div class="panel panel-default">
+		<div class="panel panel-heading">
+			{{contact.firstName}}
+			{{contact.lastName}}
+		</div>
+			<table class="table">
+				<div>{{contact.phoneNumber}}</div>
+				<div>{{contact.email}}</div>
+				<div>{{contact.website}}</div>	
+			</table>	
+			<div><button class="btn btn-primary">delete</button></div>	
+		</div>
+		</div>
+		
+	</div>
+	</div>
