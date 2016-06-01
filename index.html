@@ -7,40 +7,17 @@
   	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="lib/css/main.css">
 </head>
-<body>
 <body ng-app= "AddressBook">
-<nav class="navbar navbar-default" ng-controller="NavCtrl">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Address Book</a>
-    </div>
+<div ng-include="'./partials/nav-bar.html'"></div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right" ng-repeat="tabs in navBar">
-        <li><a ng-href="{{tabs.url}}">{{tabs.name}}</a></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
       <div class="co-xs-12" ng-view>
 
       </div>
-    </div>
-    </div>
       
 
 
 
 
-	</div>
 
 	
 
@@ -48,9 +25,16 @@
 	<script type="text/javascript" src = "lib/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src = "lib/bower_components/angular/angular.min.js"></script>
   <script type="text/javascript" src = "lib/bower_components/angular-route/angular-route.min.js"></script>
+  <script type="text/javascript" src = "lib/bower_components/firebase/firebase.js"></script>
+  <script type="text/javascript" src = "lib/bower_components/angularfire/dist/angularfire.min.js"></script>
   <script type="text/javascript" src = "app/app.js"></script>
+  <script type="text/javascript" src = "app/factories/ContactFactory.js"></script>
+  <script type="text/javascript" src = "app/factories/AuthFactory.js"></script>
   <script type="text/javascript" src = "app/controllers/NavCtrl.js"></script>
   <script type="text/javascript" src = "app/controllers/AllContactsCtrl.js"></script>
   <script type="text/javascript" src = "app/controllers/NewContactCtrl.js"></script>
+  <script type="text/javascript" src = "app/controllers/EditContactCtrl.js"></script>
+  <script type="text/javascript" src = "app/controllers/ViewContactCtrl.js"></script>
+  <script type="text/javascript" src = "app/controllers/LoginCtrl.js"></script>
 </body>
 </html>

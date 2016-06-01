@@ -12,20 +12,19 @@
     </div>
   </div> 
   <div class="container">
-<div ng-repeat= "contact in details | filter: searchText">
+<div ng-repeat= "contact in contacts | filter: searchText">
 	<div class="panel panel-default">
 		<div class="panel panel-heading">
-			{{contact.firstName}}
-			{{contact.lastName}}
+			<a ng-href="#/contacts/{{contact.id}}">{{contact.firstName}} {{contact.lastName}}</a>
 		</div>
 			<table class="table">
 				<div>{{contact.phoneNumber}}</div>
 				<div>{{contact.email}}</div>
 				<div>{{contact.website}}</div>	
 			</table>	
-			<div><button class="btn btn-primary">delete</button></div>	
+			<div><button class="btn btn-primary" ng-click ="contactByeBye(contact.id)"><i class="fa fa-trash-o" aria-hidden="true"></i>
+      </button></div>
 		</div>
 		</div>
 		
-	</div>
 	</div>

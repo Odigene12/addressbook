@@ -1,61 +1,21 @@
-app.controller("AllContactsCtrl", function($scope){
-	$scope.details = [
-	{
-		id:0,
-		firstName: "James",
-		lastName: "Cameron",
-		phoneNumber: "615-555-5555",
-		email: "james.cameron@email.com",
-		website: "JamesCameron.com"
-	},	
-	{
-		id:1,
-		firstName: "Nathan",
-		lastName: "Jones",
-		phoneNumber: "431-098-7654",
-		email: "nathan.jones@email.com",
-		website: "NathanJones.com"
-	},	
-	{
-		id:2,
-		firstName: "Jay",
-		lastName: "Z",
-		phoneNumber: "901-765-4321",
-		email: "jay.z@email.com",
-		website: "JayZ.com"
-	},	
-	{
-		id:3,
-		firstName: "Nailah",
-		lastName: "Ajamu",
-		phoneNumber: "777-123-4567",
-		email: "nailah.Ajamu@email.com",
-		website: "NailahAjamu.com"
-	},	
-	{
-		id:4,
-		firstName: "Thabiti",
-		lastName: "McNeal",
-		phoneNumber: "123-456-7890",
-		email: "thabiti.mcneal@email.com",
-		website: "ThabitiMcNeal.com"
-	},	
-	{
-		id:5,
-		firstName: "Andrew",
-		lastName: "Randle",
-		phoneNumber: "623-444-4444",
-		email: "andrew.randle@email.com",
-		website: "AndrewRandle.com"
-	},	
-	{
-		id:6,
-		firstName: "Trell",
-		lastName: "Reid",
-		phoneNumber:"731-222-2222",
-		email: "trell.reid@email.com",
-		website: "trell.reid.com"
-		}	
+app.controller("AllContactsCtrl", function($scope, $http, $location, contactStorage){
+	$scope.contacts = [];
 
-	];
+	//this is where the contactStorage factory is called since it has a function that gets the contacts from Firebase ("getContacts") then I want to set the empty array ("$scope.contacts") equal to the object array that was just received from Firebase ("contactList").
+	contactStorage.getContacts().then(function(contactList){
+		$scope.contacts = contactList;	
+	});
+
+	// this function makes it to where you can delete the specified item off of the DOM by using the delete function that was created in the factory.
+	$scope.contactByeBye = function(contactId) {
+		console.log("delete button clicked");
+		console.log(contactId);
+		// this is where the factory is called then the function that does what is needed (which is deleting in this case).
+		contactStorage.deleteContact(contactId).then(function(response){
+			// here the contacts are extracted again from firebase and updated with the new list that does not include the contact that was deleted.
+			contactStorage.getContacts().then(function(contactList){
+				$scope.contacts = contactList;
+			});
+		});
+			};
 });
