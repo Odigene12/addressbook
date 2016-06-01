@@ -35,6 +35,7 @@ app.factory("AuthFactory", function(firebaseURL, $http) {
           "password": credentials.password
         }, (error, authData) => {
           if (error) {
+            console.log(error);
             reject(error);
           } else {
             console.log("authWithPassword method completed successfully");

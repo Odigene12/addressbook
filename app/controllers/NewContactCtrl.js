@@ -7,7 +7,8 @@ app.controller("NewContactCtrl", function($scope, $location, contactStorage){
 		lastName:"",
 		phoneNumber:  "",
 		email: "",
-		website: ""
+		website: "",
+		uid: ""
 };
 	// this is the function that calls on the factory again that contains the function postNewContact that needs the information from $scope.newTask in order to post the new information for the contact to firebase and in turn on the DOM.
 	$scope.addNewContact = function () {

@@ -13,22 +13,31 @@ let isAuth = (AuthFactory) => new Promise ((resolve, reject) => {
 
 app.config(function($routeProvider){
 	$routeProvider.
+	when('/',{
+      templateUrl: 'partials/contacts-all.html',
+      controller: 'AllContactsCtrl',
+      resolve: {isAuth}
+      }).
 	when('/contacts/all', {
 		templateUrl: 'partials/contacts-all.html',
-		controller: 'AllContactsCtrl'
+		controller: 'AllContactsCtrl',
+		resolve: {isAuth}
 	}).
 	when('/contacts/new', {
 		templateUrl: 'partials/contacts-new.html',
-		controller: 'NewContactCtrl'
+		controller: 'NewContactCtrl',
+		resolve: {isAuth}
 	}).
 	when('/contacts/:contactId', {
 		templateUrl: 'partials/contacts-details.html',
-		controller: 'ViewContactCtrl'
+		controller: 'ViewContactCtrl',
+		resolve: {isAuth}
 	}).
 
 	when('/contacts/:contactId/edit', {
 		templateUrl: 'partials/contact-new.html',
-		controller: 'EditContactCtrl'
+		controller: 'EditContactCtrl',
+		resolve: {isAuth}
 	}).
       when('/login', {
         templateUrl: 'partials/login.html',

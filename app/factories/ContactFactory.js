@@ -1,4 +1,4 @@
-app.factory("contactStorage", function($q, $http){
+app.factory("contactStorage", function($q, $http, AuthFactory){
 	var getContacts = function () {
 		var contacts = [];
 		// create a promise that gets the contacts from firebase
@@ -33,6 +33,7 @@ app.factory("contactStorage", function($q, $http){
 	};
 
 	var postNewContact = function(newContact) {
+		let user = AuthFactory.getUser();
 		return $q(function(resolve, reject){
 			$http.post("https://oj-addressbook.firebaseio.com/contacts.json",
 				JSON.stringify({
@@ -40,7 +41,8 @@ app.factory("contactStorage", function($q, $http){
 					lastName: newContact.lastName,
 					phoneNumber: newContact.phoneNumber,
 					email: newContact.email,
-					website: newContact.website
+					website: newContact.website,
+					uid: user.uid
 				})
 			)
 			.success(function(objectFromFirebase) {
@@ -66,6 +68,7 @@ app.factory("contactStorage", function($q, $http){
 	};
 
 	var updateContact = function(contactId, newContact){
+        let user = AuthFactory.getUser();
         return $q(function(resolve, reject) {
             $http.put(
                 "https://oj-addressbook.firebaseio.com/contacts/" + contactId + ".json",
@@ -75,6 +78,7 @@ app.factory("contactStorage", function($q, $http){
 					phoneNumber: newContact.phoneNumber,
 					email: newContact.email,
 					website: newContact.website,
+					uid: user.uid
                 })
             )
             .success(

@@ -1,6 +1,6 @@
 "use strict"
 
-app.controller("LoginCtrl", function($scope, $location, firebaseURL, AuthFactory){
+app.controller("LoginCtrl", function($scope, $rootScope, $location, firebaseURL, AuthFactory){
 
 	let ref = new Firebase(firebaseURL);
 
@@ -19,7 +19,7 @@ app.controller("LoginCtrl", function($scope, $location, firebaseURL, AuthFactory
 		console.log("you clicked on register");
 		ref.createUser({
 			email: $scope.account.email,
-			passowrd: $scope.account.passowrd
+			password: $scope.account.password
 		}, (error, userData) => {
 			if(error){
 				// This takes the error that firebase sends back and gives it to you. The phrase "Error creating user" is your message that is attached to the firebase message so you know what it is.
